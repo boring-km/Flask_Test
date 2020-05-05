@@ -16,7 +16,7 @@ def upload():
 def fileUpload():
     music = request.files['files']
     print("업로드 된 파일: ", music.filename)
-    return jsonify({"code": "OK"})
+    return jsonify({"code": "OK"}) # 성공 결과 리턴
 
 
 if __name__ == "__main__":
