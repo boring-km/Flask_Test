@@ -1,20 +1,23 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 import sys
-application = Flask(__name__)
 
+app = Flask(__name__)
 
-@application.route("/")
+@app.route("/")
 def hello():
     return 'Hello 조준우!'
 
 
-@application.route("/test")
-def test():
-    return render_template('test.html')
+@app.route("/upload")
+def upload():
+    return render_template('upload.html')
 
-@application.route("/test2")
-def test2():
-    return 'test2'
+@app.route("/fileupload", methods=['POST'])
+def fileUpload():
+    music = request.files['files']
+    print("업로드 된 파일: ", music.filename)
+    return jsonify({"code": "OK"})
+
 
 if __name__ == "__main__":
-    application.run(host='0.0.0.0', port=int(sys.argv[1]))
+    app.run(host='0.0.0.0', port=int(sys.argv[1]))
